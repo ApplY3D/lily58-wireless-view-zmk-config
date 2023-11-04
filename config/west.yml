@@ -1,5 +1,9 @@
 manifest:
   remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: urob
+      url-base: https://github.com/urob
     - name: ApplY3D
       url-base: https://github.com/ApplY3D
   projects:
