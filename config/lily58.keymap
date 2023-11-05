@@ -25,24 +25,68 @@
     acceleration-exponent = <2>;
 };
 
+#define MOD_MORPH_SFT_MASKED(NAME, KEY, MOD_KEY) \
+  mm_shf__##NAME: mm_shf__##NAME { \
+    compatible = "zmk,behavior-mod-morph"; \
+    label = #NAME; \
+    #binding-cells = <0>; \
+    bindings = <&kp KEY>, <&kp MOD_KEY>; \
+    mods = <(MOD_LSFT|MOD_RSFT)>; \
+    masked_mods = <(MOD_LSFT|MOD_RSFT)>; \
+  };
+
+#define MOD_MORPH_SFT(NAME, KEY, MOD_KEY) \
+  mm_shf__##NAME: mm_shf__##NAME { \
+    compatible = "zmk,behavior-mod-morph"; \
+    label = #NAME; \
+    #binding-cells = <0>; \
+    bindings = <&kp KEY>, <&kp MOD_KEY>; \
+    mods = <(MOD_LSFT|MOD_RSFT)>; \
+  };
+
+#define MOD_MORPH_CTRL_MASKED(NAME, KEY, MOD_KEY) \
+  mm_ctrl__##NAME: mm_ctrl__##NAME { \
+    compatible = "zmk,behavior-mod-morph"; \
+    label = #NAME; \
+    #binding-cells = <0>; \
+    bindings = <&kp KEY>, <&kp MOD_KEY>; \
+    mods = <(MOD_LCTL|MOD_RCTL)>; \
+    masked_mods = <(MOD_LCTL|MOD_RCTL)>; \
+  };
+
+#define MOD_MORPH_CTRL(NAME, KEY, MOD_KEY) \
+  mm_ctrl__##NAME: mm_ctrl__##NAME { \
+    compatible = "zmk,behavior-mod-morph"; \
+    label = #NAME; \
+    #binding-cells = <0>; \
+    bindings = <&kp KEY>, <&kp MOD_KEY>; \
+    mods = <(MOD_LCTL|MOD_RCTL)>; \
+  };
+
+/ {
+    behaviors {
+      MOD_MORPH_CTRL(bspc_del, BSPC, DEL)
+    };
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
 // ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   `   |
-// |  TAB  |  Q  |  W  |  F   |  P   |  G   |                   |  J   |  L    |  U    |  Y   |   ;   |   -   |
-// | SHIFT |  A  |  R  |  S   |  T   |  D   |                   |  H   |  N    |  E    |  I   |   O   |   '   |
-// | CTRL  |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  K   |  M    |  ,    |  .   |   /   | SHIFT |
-//                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | GUI   |
+// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |        |
+// |  TAB  |  Q  |  W  |  F   |  P   |  G   |                   |  J   |  L    |  U    |  Y   |   ;   |BSPC_DEL|
+// | SHIFT |  A  |  R  |  S   |  T   |  D   |                   |  H   |  N    |  E    |  I   |   O   |   '    |
+// | CTRL  |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  K   |  M    |  ,    |  .   |   /   | SHIFT  |
+//                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| RCTRL | GUI   |
             label = "Base";
             bindings = <
-&kp ESC   &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                     &kp N6 &kp N7   &kp N8    &kp N9  &kp N0   &kp GRAVE
-&kp TAB   &kp Q  &kp W  &kp F    &kp P    &kp G                      &kp J  &kp L    &kp U     &kp Y   &kp SEMI &kp MINUS
-&kp LSHFT &kp A  &kp R  &kp S    &kp T    &kp D                      &kp H  &kp N    &kp E     &kp I   &kp O    &kp SQT
-&kp LCTRL &kp Z  &kp X  &kp C    &kp V    &kp B  &kp LBKT   &kp RBKT &kp K  &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                        &kp LALT &kp LGUI &mo 1  &kp SPACE  &kp RET  &mo 2  &kp BSPC &kp RGUI
+&kp ESC   &kp N1 &kp N2 &kp N3   &kp N4   &kp N5                     &kp N6 &kp N7    &kp N8    &kp N9  &kp N0   &trans
+&kp TAB   &kp Q  &kp W  &kp F    &kp P    &kp G                      &kp J  &kp L     &kp U     &kp Y   &kp SEMI &mm_ctrl__bspc_del
+&kp LSHFT &kp A  &kp R  &kp S    &kp T    &kp D                      &kp H  &kp N     &kp E     &kp I   &kp O    &kp SQT
+&kp LCTRL &kp Z  &kp X  &kp C    &kp V    &kp B  &kp LBKT   &kp RBKT &kp K  &kp M     &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                        &kp LALT &kp LGUI &mo 1  &kp SPACE  &kp RET  &mo 2  &kp RCTRL &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -71,16 +115,16 @@
 // ------------------------------------------------------------------------------------------------------------
 // |       |     |     |      |      |      |                   |      |       |       |      |       | TOG_BT|
 // |       |     |     |      |      |      |                   |      |       |   ↑   |      |       |       |
-// |       |     |     |      |      |      |                   |      |    <- |   ↓   |  ->  |       |       |
-// |       |     |     |      |      |      |        |  |       |      |   +   |   -   |  =   |   \   |       |
+// |       |     |     |      |      |      |                   |      |    <- |   ↓   |  ->  |       |   `   |
+// |       |     |     |      |      |      |        |  |       |      |   =   |   +   |  -   |   \   |       |
 //                     |      |      |      |        |  |       |      |       |       |
             label = "Raise";
             bindings = <
-&trans    &trans         &trans         &trans       &trans          &trans                    &trans      &trans   &trans    &trans    &trans   &tog BT
-&trans    &trans         &trans         &trans       &trans          &trans                    &trans      &trans   &kp UP    &trans    &trans   &trans
-&trans    &trans         &trans         &trans       &trans          &trans                    &trans      &kp LEFT &kp DOWN  &kp RIGHT &trans   &trans
-&trans    &trans         &trans         &trans       &trans          &trans   &trans &trans    &trans &kp KP_PLUS   &kp MINUS &kp EQUAL &kp BSLH &trans
-                                        &trans       &trans          &trans   &trans &trans    &trans    &trans     &trans
+&trans    &trans         &trans         &trans       &trans          &trans                    &trans    &trans    &trans      &trans     &trans   &tog BT
+&trans    &trans         &trans         &trans       &trans          &trans                    &trans    &trans    &kp UP      &trans     &trans   &trans
+&trans    &trans         &trans         &trans       &trans          &trans                    &trans    &kp LEFT  &kp DOWN    &kp RIGHT  &trans   &kp GRAVE
+&trans    &trans         &trans         &trans       &trans          &trans   &trans &trans    &trans    &kp EQUAL &kp KP_PLUS &kp MINUS  &kp BSLH &trans
+                                        &trans       &trans          &trans   &trans &trans    &trans    &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
