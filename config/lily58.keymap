@@ -21,7 +21,7 @@
     time-to-max-speed-ms = <300>;
 };
 
-&mwh {
+&msc {
     acceleration-exponent = <2>;
 };
 
@@ -102,8 +102,8 @@
             label = "Lower";
             bindings = <
 &trans  &kp F1 &kp F2           &kp F3           &kp F4            &kp F5                       &kp F8     &kp F9         &kp F10        &kp F11         &kp F12      &trans
-&trans  &trans &trans           &mwh SCROLL_UP   &trans            &trans                       &trans     &mkp LCLK      &mmv MOVE_UP   &mkp RCLK       &trans       &trans
-&trans  &trans &mwh SCROLL_LEFT &mwh SCROLL_DOWN &mwh SCROLL_RIGHT &trans                       &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans       &trans
+&trans  &trans &trans           &msc SCRL_UP     &trans            &trans                       &trans     &mkp LCLK      &mmv MOVE_UP   &mkp RCLK       &trans       &trans
+&trans  &trans &msc SCRL_LEFT   &msc SCRL_DOWN   &msc SCRL_RIGHT   &trans                       &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans       &trans
 &trans  &trans &trans           &trans           &trans            &trans    &kp F6   &kp F7    &trans     &trans         &mkp MCLK      &trans          &trans       &trans
                                 &trans           &trans            &trans    &trans   &trans    &trans     &trans         &trans
             >;
