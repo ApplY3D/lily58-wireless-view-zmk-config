@@ -27,8 +27,12 @@
     acceleration-exponent = <2>;
 };
 
+&mt {
+    flavor = "tap-preferred";
+};
+
 #define MOD_MORPH_SFT_MASKED(NAME, KEY, MOD_KEY) \
-  mm_shf__##NAME: mm_shf__##NAME { \
+  mm_sft__##NAME: mm_sft__##NAME { \
     compatible = "zmk,behavior-mod-morph"; \
     label = #NAME; \
     #binding-cells = <0>; \
@@ -38,7 +42,7 @@
   };
 
 #define MOD_MORPH_SFT(NAME, KEY, MOD_KEY) \
-  mm_shf__##NAME: mm_shf__##NAME { \
+  mm_sft__##NAME: mm_sft__##NAME { \
     compatible = "zmk,behavior-mod-morph"; \
     label = #NAME; \
     #binding-cells = <0>; \
@@ -68,6 +72,7 @@
 / {
     behaviors {
       MOD_MORPH_CTRL(bspc_del, BSPC, DEL)
+      MOD_MORPH_SFT(ru_semi_colon, RU_SEMI, RU_COLON)
     };
 };
 
@@ -105,16 +110,16 @@
         ru {
 // ------------------------------------------------------------------------------------------------------------
 // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |        |
-// |  TAB  |  Й  | Ш,Щ |  Ф   |  П   |  Г   |                   |  Ж   |  Л    |  У,Ю  |  Ы   |  Ь,Ъ  |BSPC_DEL|
-// | SHIFT | А,Я |  Р  |  С   |  Т   |  Д   |                   |  Ч   |  Н    |  Е,Э  |  И,Й |  О,Ё  |   '    |
+// |  TAB  |  Й  | Ш,Щ |  Ф   |  П   |  Г   |                   |  Ж   |  Л    |  У,Ю  |  Ы   |   ;   |BSPC_DEL|
+// | SHIFT | А,Я |  Р  |  С   |  Т   |  Д   |                   |  Ч   |  Н    |  Е,Э  |  И,Й |  О,Ё  |  Ь,Ъ   |
 // | CTRL  |  З  |  Х  |  Ц   |  В   |  Б   |   "["  |  |  "]"  |  К   |  М    |  ,    |  .   |   /   |  CTRL  |
 //                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| SHIFT | GUI   |
             label = "Ru";
             bindings = <
-&kp ESC   &kp N1               &kp N2           &kp N3           &kp N4           &kp N5                               &kp N6           &kp N7          &kp N8       &kp N9             &kp N0           &trans
-&kp TAB   &kp RU_CHAR_SHORT_I  MT_RU_SH_SCH     &kp RU_CHAR_EF   &kp RU_CHAR_PE   &kp RU_CHAR_GE                       &kp RU_CHAR_ZHE  &kp RU_CHAR_EL  MT_RU_U_YU   &kp RU_CHAR_YERU   MT_RU_SOFT_HARD  &mm_ctrl__bspc_del
-&kp LSHFT MT_RU_A_YA           &kp RU_CHAR_ER   &kp RU_CHAR_ES   &kp RU_CHAR_TE   &kp RU_CHAR_DE                       &kp RU_CHAR_CHE  &kp RU_CHAR_EN  MT_RU_IE_AE  MT_RU_I_II         MT_RU_O_IO       &kp SQT
-&kp LCTRL &kp RU_CHAR_ZE       &kp RU_CHAR_HA   &kp RU_CHAR_CHE  &kp RU_CHAR_VE   &kp RU_CHAR_BE  &kp LBKT   &kp RBKT  &kp RU_CHAR_KA   &kp RU_CHAR_EM  &kp COMMA    &kp DOT            &kp FSLH         &kp RCTRL
+&kp ESC   &kp N1               &kp N2           &kp N3           &kp N4           &kp N5                               &kp N6           &kp N7          &kp N8        &kp N9             &kp N0                  &trans
+&kp TAB   &kp RU_CHAR_SHORT_I  MT_RU_SH_SCH     &kp RU_CHAR_EF   &kp RU_CHAR_PE   &kp RU_CHAR_GE                       &kp RU_CHAR_ZHE  &kp RU_CHAR_EL  MT_RU_U_YU    &kp RU_CHAR_YERU   &mm_sft__ru_semi_colon  &mm_ctrl__bspc_del
+&kp LSHFT MT_RU_A_YA           &kp RU_CHAR_ER   &kp RU_CHAR_ES   &kp RU_CHAR_TE   &kp RU_CHAR_DE                       &kp RU_CHAR_CHE  &kp RU_CHAR_EN  MT_RU_IE_AE   MT_RU_I_II         MT_RU_O_IO              MT_RU_SOFT_HARD
+&kp LCTRL &kp RU_CHAR_ZE       &kp RU_CHAR_HA   &kp RU_CHAR_CHE  &kp RU_CHAR_VE   &kp RU_CHAR_BE  &kp LBKT   &kp RBKT  &kp RU_CHAR_KA   &kp RU_CHAR_EM  &kp RU_COMMA  &kp RU_DOT         &kp RU_FSLH             &kp RCTRL
                                                 &kp LALT         &kp LGUI         &mo LOW         &kp SPACE  &kp RET   &mo RAISE        &kp RSHFT       &kp RGUI
             >;
 
