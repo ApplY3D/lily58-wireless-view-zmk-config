@@ -83,6 +83,7 @@
 #define MT_RU_O_IO &mt RU_CHAR_IO RU_CHAR_O
 #define MT_RU_I_II &mt RU_CHAR_SHORT_I RU_CHAR_I
 #define MT_RU_IE_AE &mt RU_CHAR_E RU_CHAR_IE
+#define MT_RU_CHE_HA &mt RU_CHAR_HA RU_CHAR_CHE
 
 / {
     keymap {
@@ -107,20 +108,39 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
+//        ru {
+// // ------------------------------------------------------------------------------------------------------------
+// // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |        |
+// // |  TAB  |  Й  | Ш,Щ |  Ф   |  П   |  Г   |                   |  Ж   |  Л    |  У,Ю  |  Ы   |   ;   |BSPC_DEL|
+// // | SHIFT | А,Я |  Р  |  С   |  Т   |  Д   |                   |  Ч   |  Н    |  Е,Э  |  И,Й |  О,Ё  |  Ь,Ъ   |
+// // | CTRL  |  З  |  Х  |  Ц   |  В   |  Б   |   "["  |  |  "]"  |  К   |  М    |  ,    |  .   |   /   |  CTRL  |
+// //                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| SHIFT | GUI   |
+//             label = "Ru";
+//             bindings = <
+// &kp ESC   &kp N1               &kp N2           &kp N3           &kp N4           &kp N5                               &kp N6           &kp N7          &kp N8        &kp N9             &kp N0                  &trans
+// &kp TAB   &kp RU_CHAR_SHORT_I  MT_RU_SH_SCH     &kp RU_CHAR_EF   &kp RU_CHAR_PE   &kp RU_CHAR_GE                       &kp RU_CHAR_ZHE  &kp RU_CHAR_EL  MT_RU_U_YU    &kp RU_CHAR_YERU   &mm_sft__ru_semi_colon  &mm_ctrl__bspc_del
+// &kp LSHFT MT_RU_A_YA           &kp RU_CHAR_ER   &kp RU_CHAR_ES   &kp RU_CHAR_TE   &kp RU_CHAR_DE                       &kp RU_CHAR_CHE  &kp RU_CHAR_EN  MT_RU_IE_AE   MT_RU_I_II         MT_RU_O_IO              MT_RU_SOFT_HARD
+// &kp LCTRL &kp RU_CHAR_ZE       &kp RU_CHAR_HA   &kp RU_CHAR_CHE  &kp RU_CHAR_VE   &kp RU_CHAR_BE  &kp LBKT   &kp RBKT  &kp RU_CHAR_KA   &kp RU_CHAR_EM  &kp RU_COMMA  &kp RU_DOT         &kp RU_FSLH             &kp RCTRL
+//                                                 &kp LALT         &kp LGUI         &mo LOW         &kp SPACE  &kp RET   &mo RAISE        &kp RSHFT       &kp RGUI
+//             >;
+// 
+//             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+//         };
+
         ru {
 // ------------------------------------------------------------------------------------------------------------
 // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |        |
-// |  TAB  |  Й  | Ш,Щ |  Ф   |  П   |  Г   |                   |  Ж   |  Л    |  У,Ю  |  Ы   |   ;   |BSPC_DEL|
-// | SHIFT | А,Я |  Р  |  С   |  Т   |  Д   |                   |  Ч   |  Н    |  Е,Э  |  И,Й |  О,Ё  |  Ь,Ъ   |
-// | CTRL  |  З  |  Х  |  Ц   |  В   |  Б   |   "["  |  |  "]"  |  К   |  М    |  ,    |  .   |   /   |  CTRL  |
+// |  TAB  |  Й  |  Ц  |  У,Ю |  К   |  Е,Э |                   |  Н   |  Г    |  Ш    |  Щ   |   З   |BSPC_DEL|
+// | SHIFT |  Ф  |  Ы  |  В   |  А   |  П   |                   |  Р   |  О    |  Л    |  Д   |   Ж   |   ?    |
+// | CTRL  |  Я  | Ч,Х |  С   |  М   |  И   |   "["  |  |  "]"  |  Т   |  Ь,Ъ  |  Б    |  ,   |   .   |  CTRL  |
 //                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| SHIFT | GUI   |
             label = "Ru";
             bindings = <
-&kp ESC   &kp N1               &kp N2           &kp N3           &kp N4           &kp N5                               &kp N6           &kp N7          &kp N8        &kp N9             &kp N0                  &trans
-&kp TAB   &kp RU_CHAR_SHORT_I  MT_RU_SH_SCH     &kp RU_CHAR_EF   &kp RU_CHAR_PE   &kp RU_CHAR_GE                       &kp RU_CHAR_ZHE  &kp RU_CHAR_EL  MT_RU_U_YU    &kp RU_CHAR_YERU   &mm_sft__ru_semi_colon  &mm_ctrl__bspc_del
-&kp LSHFT MT_RU_A_YA           &kp RU_CHAR_ER   &kp RU_CHAR_ES   &kp RU_CHAR_TE   &kp RU_CHAR_DE                       &kp RU_CHAR_CHE  &kp RU_CHAR_EN  MT_RU_IE_AE   MT_RU_I_II         MT_RU_O_IO              MT_RU_SOFT_HARD
-&kp LCTRL &kp RU_CHAR_ZE       &kp RU_CHAR_HA   &kp RU_CHAR_CHE  &kp RU_CHAR_VE   &kp RU_CHAR_BE  &kp LBKT   &kp RBKT  &kp RU_CHAR_KA   &kp RU_CHAR_EM  &kp RU_COMMA  &kp RU_DOT         &kp RU_FSLH             &kp RCTRL
-                                                &kp LALT         &kp LGUI         &mo LOW         &kp SPACE  &kp RET   &mo RAISE        &kp RSHFT       &kp RGUI
+&kp ESC   &kp N1               &kp N2            &kp N3           &kp N4           &kp N5                               &kp N6          &kp N7           &kp N8           &kp N9             &kp N0           &trans
+&kp TAB   &kp RU_CHAR_SHORT_I  &kp RU_CHAR_TSE   MT_RU_U_YU       &kp RU_CHAR_KA   MT_RU_IE_AE                          &kp RU_CHAR_EN  &kp RU_CHAR_GE   &kp RU_CHAR_SHA  &kp RU_CHAR_SHCHA  &kp RU_CHAR_ZE   &mm_ctrl__bspc_del
+&kp LSHFT &kp RU_CHAR_EF       &kp RU_CHAR_YERU  &kp RU_CHAR_VE   &kp RU_CHAR_A    &kp RU_CHAR_PE                       &kp RU_CHAR_ER  &kp RU_CHAR_O    &kp RU_CHAR_EL   &kp RU_CHAR_DE     &kp RU_CHAR_ZHE  &kp RU_DQT
+&kp LCTRL &kp RU_CHAR_YA       MT_RU_CHE_HA      &kp RU_CHAR_ES   &kp RU_CHAR_EM   &kp RU_CHAR_I   &kp LBKT   &kp RBKT  &kp RU_CHAR_TE  MT_RU_SOFT_HARD  &kp RU_CHAR_BE   &kp RU_COMMA       &kp RU_DOT       &kp RCTRL
+                                                 &kp LALT         &kp LGUI         &mo LOW         &kp SPACE  &kp RET   &mo RAISE       &kp RSHFT        &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
